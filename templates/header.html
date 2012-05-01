@@ -1,0 +1,70 @@
+<div class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+			  <a href="#" class="brand">Apex</a>
+              <div class="nav-collapse">
+                <ul class="nav" id="top-fixed">  
+                  <li {% ifequal TITLE "Home"%}class="active"{% endifequal %}><a href="{% url Home %}">Home</a></li>
+				  <li {% ifequal TITLE "About"%}class="active"{% endifequal %}><a href="{% url About %}">About</a></li>
+				  <li {% ifequal TITLE "Store"%}class="active"{% endifequal %}><a href="{% url Store %}">Store</a></li>
+				  <li {% ifequal TITLE "Download"%}class="active"{% endifequal %}><a href="{% url Download %}">Download</a></li>
+				  <li {% ifequal TITLE "Support"%}class="active"{% endifequal %}><a href="{% url Support %}">Support</a></li>
+            	</ul>
+                <form class="navbar-search pull-left">
+                  <input type="text" class="search-query" placeholder="Search">
+                </form>
+                <ul class="nav pull-right" id="top-fixed">
+{#<% if signed_in? && current_user.activated? %>#}
+
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
+{#<%= current_user.name %>#}
+					  User
+                      <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+{% comment %}
+                      <li><%= link_to "Profile", current_user%></li>
+                      <li><%= link_to "Settings", edit_user_path(current_user)%></li>
+
+                      <li><%= link_to "Users", users_path %></li>
+{% endcomment %}
+					  <li><a href="#">Profile</a></li>
+					  <li><a href="#">Settings</a></li>
+					  <li><a href="#">Users</a></li>
+                    </ul>
+                  </li>
+{% comment %}
+                  <li <%if@title=="bbs"%>class="active"<%end%>><%= link_to "BBS", "#" %></li>
+                  <% if signed_in? && current_user.activated? %>
+                  <li <%if@title=="signout"%>class="active"<%end%>><%= link_to "Sign out", signout_path, :method => :delete %></li>
+                  <% else %>
+                  <li <%if@title=="signin"%>class="active"<%end%>><%= link_to "Sign in", signin_path %></li>
+                  <li <%if@title=="Signup"%>class="active"<%end%>><%= link_to "Sign up", signup_path %><li>
+                  <% end %>
+{% endcomment %}
+				  <li {% ifequal TITLE "BBS" %}class="active"{%endifequal%}><a href="#">BBS</a></li>
+				  <li {% ifequal TITLE "Sign Out" %}class="active"{%endifequal%}><a href="#">Sign Out</a></li>
+				  <li {% ifequal TITLE "Sign In" %}class="active"{%endifequal%}><a href="#">Sign In</a></li>
+				  <li {% ifequal TITLE "Sign Up" %}class="active"{%endifequal%}><a href="#">Sign Up</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <header>
+        <nav id="main">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Store</a></li>
+            <li><a href="#">Download</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </nav>
+        
+      </header>

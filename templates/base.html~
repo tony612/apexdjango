@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apex | {% block title %}{% endblock %}</title>
+    {% comment %} 
+    <%= csrf_meta_tag%>
+    <%= render 'layouts/stylesheets'%>
+    <%= javascript_include_tag :defaults %>
+	
+	<!--<%= javascript_include_tag 'jquery-1.7.1.min.js' %>-->
+	{% if @title == "Home" %}
+		{%= render 'layouts/js-slides' %}
+	{% end %}
+	{% javascript_include_tag "bootstrap-dropdown.js" %}
+	{%endcomment%}
+{# css #}
+	<!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<link href="{{ css_dir }}/blueprint/screen.css" media="screen" rel="stylesheet" type="text/css">
+	<!--[if lt IE 8]>
+	<link href="{{ css_dir }}/blueprint/ie.css" media="screen" rel="stylesheet" type="text/css">
+	<![endif]-->
+	<link href="{{ css_dir }}/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<link href="{{ css_dir }}/custom.css" media="screen" rel="stylesheet" type="text/css">
+	{% ifequal title "Home" %}
+	  <link href="{{ css_dir }}/pagination_apple.css" media="screen" rel="stylesheet" type="text/css">
+	{% endifequal %}
+	<link href="{{ css_dir }}/slide.css" media="screen" rel="stylesheet" type="text/css">
+
+{# javascript #}
+	<script src="/javascripts/jquery.min.js?1330188581" type="text/javascript"></script>
+	<script src="/javascripts/jquery-ui.min.js?1330188581" type="text/javascript"></script>
+	<script src="/javascripts/jquery_ujs.js?1330188581" type="text/javascript"></script>
+	<script src="/javascripts/application.js?1330188581" type="text/javascript"></script>
+	<script src="/javascripts/slides.min.jquery.js?1330188581" type="text/javascript"></script>
+	 <script>
+		$(function(){
+			$('#slides').slides({
+				preload: true,
+				preloadImage: 'images/loading.gif',
+				play: 5000,
+				pause: 2500,
+				hoverPause: true,
+				animationStart: function(current){
+					$('.caption').animate({
+						bottom:-35
+					},100);
+					if (window.console && console.log) {
+						// example return of current slide number
+						console.log('animationStart on slide: ', current);
+					};
+				},
+				animationComplete: function(current){
+					$('.caption').animate({
+						bottom:0
+					},200);
+					if (window.console && console.log) {
+						// example return of current slide number
+						console.log('animationComplete on slide: ', current);
+					};
+				},
+				slidesLoaded: function() {
+					$('.caption').animate({
+						bottom:0
+					},200);
+				}
+			});
+		});
+	</script>
+	    <script src="/javascripts/bootstrap-dropdown.js?1330188581" type="text/javascript"></script>
+    <script type="text/javascript">
+      $("document").ready(function(){
+          $("ul#top-fixed li").click(function(){
+              $("ul#top-fixed li").removeClass("active");
+              $(this).addClass("active");
+            });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="container">
+	{% include 'header.html' %}
+      <!--<section class="round">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, :class => "flash #{key}") %>
+        <% end %>
+        <%= yield %>
+      </section>
+	  -->
+	{% block content %}
+	{% endblock %}
+    </div>
+	{% block footer %}
+	{% endblock %}
+{% debug %}
+  </body>
+</html>
