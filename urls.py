@@ -1,10 +1,11 @@
 from django.conf.urls.defaults import *
 from apexdjango.views import *
+from apexdjango.users import views as users_views
 import settings
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
     # Example:
@@ -17,11 +18,11 @@ urlpatterns = patterns('',
 	url(r'^support', pages_template, {'template_name': 'support.html', 'TITLE':'Support'}, name="Support"),
 	url(r'^apps', pages_template, {'template_name': 'apps.html', 'TITLE':'Apps'}, name="Apps"),
 	url(r'contact', pages_template, {'template_name': 'contact.html', 'TITLE':'Contact'}, name="Contact"),
-	url(r'^signin', pages_template, {'template_name': 'signin.html', 'TITLE':'Sign_In'}, name="Sign_In"),
-	url(r'^signup', pages_template, {'template_name': 'signup.html', 'TITLE':'Sign_Up'}, name="Sign_Up"),
+	url(r'^signin', users_views.signin, {'template_name': 'signin.html', 'TITLE':'Sign In'}, name="Sign_In"),
+	url(r'^signup', users_views.signup, {'template_name': 'signup.html', 'TITLE':'Sign Up'}, name="Sign_Up"),
+	url(r'^logout', users_views.logout_view, name="Log_Out"),
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
     # Uncomment the next line to enable the admin:
-    # (r'^admin/', include(admin.site.urls)),
+    (r'^admin/', include(admin.site.urls)),
 )

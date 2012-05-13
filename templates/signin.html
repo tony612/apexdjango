@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+
+{% if form.has_errors %}
+<p>Email and password can't match</p>
+{% endif %}
+<h1>Sign in</h1>
+</br>
+<form action="{% url Sign_In %}" method="post" class="form-inline">
+  <div class="field">
+    <label for="id_email">Email</label>
+	</br>
+	<input type="text" name="email"  placeholder="Email">
+  </div>
+  <div class="field">
+    <label for="id_password">Password</label>
+	</br>
+	<input type="password" name="password" placeholder="Password">
+  </div>
+  <label class="checkbox">
+  	<input type="checkbox"> Remember me
+  </label>
+  </br>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+{% endblock %}

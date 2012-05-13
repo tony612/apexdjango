@@ -49,9 +49,12 @@
                   <% end %>
 {% endcomment %}
 				  <li {% ifequal TITLE "BBS" %}class="active"{%endifequal%}><a href="#">BBS</a></li>
-				  <li {% ifequal TITLE "Sign Out" %}class="active"{%endifequal%}><a href="#">Sign Out</a></li>
-				  <li {% ifequal TITLE "Sign In" %}class="active"{%endifequal%}><a href="#">Sign In</a></li>
-				  <li {% ifequal TITLE "Sign Up" %}class="active"{%endifequal%}><a href="#">Sign Up</a></li>
+				  {% if user.is_authenticated %}
+				  <li {% ifequal TITLE "Sign Out" %}class="active"{%endifequal%}><a href="{% url Log_Out %}">Logout</a></li>
+				  {% else %}
+				  <li {% ifequal TITLE "Sign In" %}class="active"{%endifequal%}><a href="{% url Sign_In %}">Sign In</a></li>
+				  <li {% ifequal TITLE "Sign Up" %}class="active"{%endifequal%}><a href="{% url Sign_Up %}">Sign Up</a></li>
+				  {% endif %}
                 </ul>
               </div>
             </div>

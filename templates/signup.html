@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<h1>Sign Up</h1>
+
+<form action="" method="post"> 
+  <div class="field">
+    {{ form.email.errors }}
+    <label for="id_email">Email</label>
+	{{ form.email }}	
+  </div>
+  <div class="field">
+    {{ form.username.errors }}
+    <label for="id_username">Username</label>
+	{{ form.username }}	
+  </div>
+  <div class="field">
+    {{ form.password.errors }}
+    <label for="id_password">Password</label>
+	{{ form.password }}
+  </div>
+  <div class="field">
+    {{ form.pwconfirm.errors }}
+    <label for="id_pwconfirm">Password Confirm</label>
+	{{ form.pwconfirm }}
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+{% endblock %}
