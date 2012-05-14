@@ -19,35 +19,19 @@
                   <input type="text" class="search-query" placeholder="Search">
                 </form>
                 <ul class="nav pull-right" id="top-fixed">
-{#<% if signed_in? && current_user.activated? %>#}
-
+				  {% if user.is_authenticated %}
                   <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
-{#<%= current_user.name %>#}
-					  User
+                    {{ user.username }}
                       <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-{% comment %}
-                      <li><%= link_to "Profile", current_user%></li>
-                      <li><%= link_to "Settings", edit_user_path(current_user)%></li>
-
-                      <li><%= link_to "Users", users_path %></li>
-{% endcomment %}
-					  <li><a href="#">Profile</a></li>
+					  <li><a href="{% url Profile %}">Profile</a></li>
 					  <li><a href="#">Settings</a></li>
-					  <li><a href="#">Users</a></li>
+					  <li><a href="{% url Users %}">Users</a></li>
                     </ul>
                   </li>
-{% comment %}
-                  <li <%if@title=="bbs"%>class="active"<%end%>><%= link_to "BBS", "#" %></li>
-                  <% if signed_in? && current_user.activated? %>
-                  <li <%if@title=="signout"%>class="active"<%end%>><%= link_to "Sign out", signout_path, :method => :delete %></li>
-                  <% else %>
-                  <li <%if@title=="signin"%>class="active"<%end%>><%= link_to "Sign in", signin_path %></li>
-                  <li <%if@title=="Signup"%>class="active"<%end%>><%= link_to "Sign up", signup_path %><li>
-                  <% end %>
-{% endcomment %}
+                  {% endif %}
 				  <li {% ifequal TITLE "BBS" %}class="active"{%endifequal%}><a href="#">BBS</a></li>
 				  {% if user.is_authenticated %}
 				  <li {% ifequal TITLE "Sign Out" %}class="active"{%endifequal%}><a href="{% url Log_Out %}">Logout</a></li>

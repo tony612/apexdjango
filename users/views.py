@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import 	login_required
 
 def custom_proc(request):
 	return {
@@ -58,4 +59,11 @@ def signup(request, template_name, TITLE):
 		form = RegisterForm()
 	#	return HttpResponse('signup')
 	return render_to_response(template_name, {'TITLE': TITLE, 'form':form}, context_instance=RequestContext(request, processors=[custom_proc]))
+
+def showall(request, template_name, TITLE, user_list):
+	return render_to_response(template_name, {'TITLE':TITLE, 'user_list':user_list}, context_instance=RequestContext(request, processors=[custom_proc]))
+
+@login_required
+def profile(request, template_name, TITLE):
+	return render_to_response(template_name, {'TITLE':TITLE}, context_instance=RequestContext(request, processors=[custom_proc]))
 
